@@ -1,0 +1,75 @@
+*,
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+}
+
+.banner-container {
+    width: 336px;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: transform 1s ease-in-out;
+    /* スライドの移動にアニメーションを適用 */
+    top: 0;
+    left: 0;
+    transform: translateX(100%);
+    /* 初期位置を右端に設定 */
+    z-index: 1;
+}
+
+/* 最初のスライドのみ表示するための追加スタイル */
+.banner-slide:first-child {
+    transform: translateX(0);
+}
+
+.banner-slide:not(.banner-slide:first-child) {
+    transform: translateX(100%);
+}
+
+.banner-indicators {
+    width: 300px;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    --indicatorSize: 30px;
+}
+
+.indicator {
+    width: var(--indicatorSize);
+    aspect-ratio: 1/1;
+    background-color: #fff;
+    /* ⚪︎ */
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: #000;
+    width: calc(var(--indicatorSize) + 2px);
+    aspect-ratio: 1/1;
+    /* ⚫︎ */
+}
